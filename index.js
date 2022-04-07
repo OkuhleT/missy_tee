@@ -15,6 +15,12 @@ app.get('/api/garments', function(req, res){
 	// there is no template
 	res.json({garments});
 });
+app.get('/api/garments/price/:price	', function(req, res){
+	// note that this route just send JSON data to the browser
+	// there is no template
+	res.json({garments});
+});
+
 app.listen(PORT, function() {
 	console.log(`App started on port ${PORT}`)
 });
