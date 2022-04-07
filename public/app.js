@@ -19,7 +19,15 @@ genderOptions.addEventListener('click', function(evt){
 	genderFilter = evt.target.value;
 	filterData();
 });
-
+function useApi(){
+	axios.get('http://localhost:4017/api/garments')
+	.then(function(result) {
+		searchResultsElem.innerHTML = garmentsTemplate({
+			garments : result.data.garments
+		})
+	
+})
+}
 function filterData() {
 	axios
 		.get(`/api/garments?gender=${genderFilter}&season=${seasonFilter}`)
