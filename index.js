@@ -4,6 +4,9 @@ const app = express();
 // enable the static folder...
 app.use(express.static('public'));
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 // import the dataset to be used here
 const garments = require('./garments.json');
 
@@ -47,6 +50,48 @@ app.get('/api/garments/price/:price', function(req, res){
 		garments : filteredGarments
 	});
 });
+
+app.post('/api/garments', (req, res) => {
+
+	// get the fields send in from req.body
+	const {
+		description,
+		img,
+		gender,
+		season,
+		price
+	} = req.body;
+
+	// add some validation to see if all the fields are there.
+	// only 3 fields are made mandatory here
+	// you can change that
+
+	if (!description || !img || !price) {
+		res.json({
+			status: 'error',
+			message: 'Required data not supplied',
+		});
+	} else {
+
+		// you can check for duplicates here using garments.find
+		
+		// add a new entry into the garments list
+		garments.push({
+			description,
+			img,
+			gender,
+			season,
+			price
+		});
+
+		res.json({
+			status: 'success',
+			message: 'New garment added.',
+		});
+	}
+
+});
+
 
 app.listen(PORT, function() {
 	console.log(`App started on port ${PORT}`)
