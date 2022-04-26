@@ -1,8 +1,11 @@
 const message = document.querySelector('.message');
 const addGarmetBtn = document.querySelector('.addGarmentBtn');
 const hideAddGarmetBtn = document.querySelector('.hideAddGarmetBtn');
-const addGarmetSection = document.querySelector('.add.garment');
+const addGarmetButtonSectionaddGarmetSection = document.querySelector('.add.garment');
 const addGarmetButtonSection = document.querySelector('.add.button');
+const usernameEntered = document.querySelector('.login');
+const showApp = document.querySelector('.unhide')
+const login = document.querySelector('.btn');
 function showMessage(value){
     message.innerHTML = value;
     message.classList.toggle('hidden');
@@ -15,6 +18,19 @@ function toggleAddGarmetScreen() {
     addGarmetSection.classList.toggle('hidden');
     addGarmetButtonSection.classList.toggle('show');
 }
+function loginScreen() {
+    usernameEntered.classList.toggle('hidden');
+    addGarmetButtonSectionaddGarmetSection.classList.toggle('show'); 
+    addGarmetBtn.classList.toggle('show'); 
+
+}
+function unhideScreen() {
+    showApp.classList.toggle('show'); 
+}
+// login.addEventListener('click', function(evt){
+//     evt.preventDefault();
+//     loginScreen();
+// })
 hideAddGarmetBtn.addEventListener('click', function(evt) {
     toggleAddGarmetScreen()
 });

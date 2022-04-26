@@ -6,9 +6,32 @@ const genderOptions = document.querySelector('.genders');
 const searchResultsElem = document.querySelector('.searchResults');
 const priceRangeElem = document.querySelector('.priceRange');
 const showPriceRangeElem = document.querySelector('.showPriceRange');
+const enterUsername = document.querySelector('.text-input');
+const loginButton = document.querySelector('.btn');
+
 
 const garmentsTemplateText = document.querySelector('.garmentListTemplate');
 const garmentsTemplate = Handlebars.compile(garmentsTemplateText.innerHTML);
+
+
+loginButton.addEventListener('click', function () {
+	// get username from input
+	
+	loginScreen()
+	unhideScreen()
+	axios.post('http://localhost:4018/api/login', {
+	username: "hlomla"
+	
+})
+.then((res) => {
+  console.log(res.data)
+  // show garments
+})
+.catch((error) => {
+  console.error(error)
+})
+});
+
 
 seasonOptions.addEventListener('click', function(evt){
 	seasonFilter = evt.target.value;

@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: false }));
 // import the dataset to be used here
 const garments = require('./garments.json');
 
-const PORT = process.env.PORT || 4017;
+const PORT = process.env.PORT || 4018;
 
 // API routes to be added here
 app.get('/api/garments', function(req, res){
@@ -47,10 +47,24 @@ app.get('/api/garments/price/:price', function(req, res){
 	});
 
 	res.json({ 
-		garments : filteredGarments
+		
 	});
 });
 
+app.post('/api/login', (req,res) => {
+	const login = [{
+		username : 'hlomla'
+	}]
+
+	const username = req.body.username
+	console.log({username:req.body});
+    const user = { name: username }
+	req.user = user;
+
+	res.json({ 
+		user 
+	});
+})
 app.post('/api/garments', (req, res) => {
 
 	// get the fields send in from req.body
