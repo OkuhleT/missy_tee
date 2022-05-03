@@ -4,7 +4,6 @@ const hideAddGarmetBtn = document.querySelector('.hideAddGarmetBtn');
 const addGarmetButtonSectionaddGarmetSection = document.querySelector('.add.garment');
 const addGarmetButtonSection = document.querySelector('.add.button');
 const usernameEntered = document.querySelector('.login');
-const showApp = document.querySelector('.unhide')
 const login = document.querySelector('.btn');
 function showMessage(value){
     message.innerHTML = value;
@@ -24,8 +23,9 @@ function loginScreen() {
     addGarmetBtn.classList.toggle('show'); 
 
 }
+
 function unhideScreen() {
-    showApp.classList.toggle('show'); 
+    hideAddGarmetBtn.classList.toggle('show'); 
 }
 // login.addEventListener('click', function(evt){
 //     evt.preventDefault();
@@ -33,6 +33,7 @@ function unhideScreen() {
 // })
 hideAddGarmetBtn.addEventListener('click', function(evt) {
     toggleAddGarmetScreen()
+    unhideScreen()
 });
 const fieldManager = FieldManager({
     'description': '',

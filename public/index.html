@@ -31,14 +31,21 @@
     </script>
 </head>
 <body>
-    <div class="container">
+    <div class="container showMe hidden">
+            Logged in as: Hlomla
+    </div>
+    <div class="container login">
         <h1>Missy Tee - Clothing Store</h1>
         <div class="login">
             <label for="login">Please enter your GitHub username:</label>
             <input type="text" id="login" name="login" class="text-input" value=" "><br>
             <button class="btn">Login</button>
+            <button class="display">Display</button>
+
         </div>
-        <div class="filter hidden ">
+        </div>
+        <div class="container showMe hidden">
+        <div class="filter ">
             <h2>Filter</h2>
             <div class="genders">
                 <label>
@@ -74,13 +81,13 @@
                 R<span class="showPriceRange">0</span>.00
             </div>
         </div>
-        <div class="message hidden">
+        <div class="message">
         </div>
-        <div class="addGarment hidden">
+        <div class="addGarment">
             <div class="add button mt1 ">
                 <a href="">Add garmet</a>
             </div>
-            <div class="add garment hidden">
+            <div class="add garment">
                 <h2>Add garment</h2>
                 <img src="images/{{img}}" alt="">
                 <div class="addGarmentForm">
@@ -115,12 +122,13 @@
                 </div>
             </div>
         </div>
-        <div class="hidden unhide">
+        <div class="">
             <h2>Garments</h2>
             <div class="searchResults">
             </div>
         </div>
     </div>
+
     <script src="field-manager.js"></script>
     <script src="app.js"></script>
     <script src="add_garments.js"></script>

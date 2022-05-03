@@ -1,5 +1,7 @@
+require('dotenv').config()
 const express = require('express');
 const app = express();
+const jwt = require('jsonwebtoken');
 
 // enable the static folder...
 app.use(express.static('public'));
@@ -13,6 +15,44 @@ const garments = require('./garments.json');
 const PORT = process.env.PORT || 4018;
 
 // API routes to be added here
+
+//login route
+app.get('/api/name', checkToken, (req, res) => {
+    res.json({
+		username: 'hlomla'
+	})
+})
+
+app.post('/api/token', (req, res) => {
+    const {username} = req.body;
+	console.log({username});
+	const token = jwt.sign({
+		username
+	}, 'secret')
+
+	res.json({
+		token
+	})	
+})
+
+
+function checkToken(req, res, next) {
+    const token = req.query.token
+
+	
+    if (!token) return res.sendStatus(401);
+	
+	const decode = jwt.verify(token, 'secret')
+	const {username} = decode
+	console.log(decode);
+
+	if(username && username === 'hlomla'){
+		    next()
+	} else{
+		res.sendStatus(401)
+	}
+}
+
 app.get('/api/garments', function(req, res){
 	const gender = req.query.gender;
 	const season = req.query.season;
@@ -51,20 +91,6 @@ app.get('/api/garments/price/:price', function(req, res){
 	});
 });
 
-app.post('/api/login', (req,res) => {
-	const login = [{
-		username : 'hlomla'
-	}]
-
-	const username = req.body.username
-	console.log({username:req.body});
-    const user = { name: username }
-	req.user = user;
-
-	res.json({ 
-		user 
-	});
-})
 app.post('/api/garments', (req, res) => {
 
 	// get the fields send in from req.body
